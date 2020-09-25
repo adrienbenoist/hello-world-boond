@@ -99,7 +99,7 @@ $page = <<<CONTENT
 		<hr/>
 		
 		<div>
-			<a href="#" onclick="BoondManager.redirect('/resources');" class="button">go to resources</a>
+			<a href="#" onclick="BoondManager.redirect('/candidates');" class="button">go to candidates</a>
 		</div>
 		
 		<script>
