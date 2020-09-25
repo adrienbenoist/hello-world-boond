@@ -99,7 +99,7 @@ $page = <<<CONTENT
 		<hr/>
 		
 		<div>
-			<a href="#" onclick="BoondManager.redirect('/candidates');" class="button">go to candidates</a>
+			<a href="#" onclick="BoondManager.redirect('/candidates?perimeterAgencies=%5B%223%22%5D');" class="button">go to candidates</a>
 		</div>
 		
 		<script>
