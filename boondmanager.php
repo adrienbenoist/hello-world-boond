@@ -43,11 +43,14 @@ class BoondManager {
 	 * @return bool|mixed
 	 */
 	public function signedRequestDecode($signedRequest) {
+		echo "signedRequest param $signedRequest!<br>"; 
 		list($encodedSignature, $payload) = explode('.', $signedRequest, 2);
 
 		$signedRequest = self::base64UrlDecode($encodedSignature) == hash_hmac('SHA256', $payload, $this->key)
 			? json_decode(self::base64UrlDecode($payload), true)
 			: false;
+
+		echo "signedRequest var $signedRequest!<br>";
 
 		if(!$signedRequest)
 			return false;
@@ -79,15 +82,18 @@ class BoondManager {
 	 * @return bool|mixed
 	 */
 	public function callApi($api) {
+		echo("api $api!<br>");
 		$s = curl_init();
-
+		echo("s $s!<br>");
 		$payload = [
 			"userToken" => $this->userToken,
 			"appToken" => $this->appToken,
 			"time" => time(),
 			"mode" => "normal"
 		];
-
+		foreach ($payload as $k => $v) {
+			echo "\$payload[$k] => $v<br>";
+	}
 		curl_setopt($s,CURLOPT_URL, $this->baseURL . '/' . $api);
 		curl_setopt($s,CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($s,CURLOPT_HTTPHEADER, [
